@@ -7,33 +7,45 @@ enum AuthStatus {
 }
 
 class AuthState extends Equatable {
-  final User? user;
   final AuthStatus authStatus;
+  final UserModel? user;
+  final bool isLoading;
+  final String? errorMessage;
 
   const AuthState({
-    this.user,
     required this.authStatus,
+    this.user,
+    required this.isLoading,
+    this.errorMessage,
   });
 
   factory AuthState.initial() {
-    return const AuthState(authStatus: AuthStatus.unknown);
+    return const AuthState(
+        authStatus: AuthStatus.authenticated,
+        user: null,
+        isLoading: false,
+        errorMessage: null);
   }
-
-  @override
-  List<Object?> get props => [user, authStatus];
 
   @override
   String toString() {
-    return 'AuthState{user: $user, authStatus: $authStatus}';
+    return 'AuthState{authStatus: $authStatus, user: $user, isLoading: $isLoading, errorMessage: $errorMessage}';
   }
 
+  @override
+  List<Object?> get props => [authStatus, user, isLoading, errorMessage];
+
   AuthState copyWith({
-    User? user,
     AuthStatus? authStatus,
+    UserModel? user,
+    bool? isLoading,
+    String? errorMessage,
   }) {
     return AuthState(
-      user: user ?? this.user,
       authStatus: authStatus ?? this.authStatus,
+      user: user ?? this.user,
+      isLoading: isLoading ?? this.isLoading,
+      errorMessage: errorMessage ?? this.errorMessage,
     );
   }
 }

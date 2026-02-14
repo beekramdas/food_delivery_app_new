@@ -60,6 +60,7 @@ dev_dependencies:
   bloc: ^9.2.0
   flutter_bloc: ^9.1.1
   equatable: ^2.0.8
+  google_sign_in: ^7.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
