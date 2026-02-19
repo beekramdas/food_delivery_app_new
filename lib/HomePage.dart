@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:food_delivery_app/cubits/auth/auth_cubit.dart';
 import 'package:food_delivery_app/pages/category/category_tile.dart';
 import 'package:food_delivery_app/pages/open_restaurants/restaurantDetail.dart';
 import 'package:food_delivery_app/pages/open_restaurants/restaurantTile.dart';
@@ -101,45 +103,51 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const Spacer(),
-                  Container(
-                    height: 49,
-                    width: 45,
-                    decoration: const BoxDecoration(
-                      color: Colors.black,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Stack(
-                      children: [
-                        Center(
-                          child: SvgPicture.asset(
-                            "assets/images/ui_images/shopping-bag.svg",
-                            height: 20,
-                            width: 18,
-                          ),
-                        ),
-                        Positioned(
-                          top: 0,
-                          right: 0,
-                          child: Container(
-                            height: 25,
-                            width: 25,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Color(0xFFFF7622),
+                  ///////////---------->Temporary Logout Button----------->
+                  GestureDetector(
+                    onTap: () {
+                      context.read<AuthCubit>().signOut();
+                    },
+                    child: Container(
+                      height: 49,
+                      width: 45,
+                      decoration: const BoxDecoration(
+                        color: Colors.black,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Stack(
+                        children: [
+                          Center(
+                            child: SvgPicture.asset(
+                              "assets/images/ui_images/shopping-bag.svg",
+                              height: 20,
+                              width: 18,
                             ),
-                            child: const Center(
-                              child: Text(
-                                "2",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                  color: Colors.white,
+                          ),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            child: Container(
+                              height: 25,
+                              width: 25,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color(0xFFFF7622),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  "2",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],

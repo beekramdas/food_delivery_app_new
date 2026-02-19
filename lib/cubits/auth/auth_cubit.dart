@@ -17,7 +17,8 @@ class AuthCubit extends Cubit<AuthState> {
       if (firebaseUser != null) {
         emit(state.copyWith(authStatus: AuthStatus.authenticated));
       } else {
-        emit(state.copyWith(authStatus: AuthStatus.authenticated));
+        emit(
+            state.copyWith(authStatus: AuthStatus.unauthenticated, user: null));
       }
     });
   }
@@ -58,6 +59,7 @@ class AuthCubit extends Cubit<AuthState> {
         isLoading: false,
         authStatus: AuthStatus.authenticated,
         user: user,
+        errorMessage: null,
       ));
     } catch (e) {
       emit(state.copyWith(
